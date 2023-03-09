@@ -15,7 +15,6 @@ import "./index.css";
 const Search = () => {
   const [searchResults, setSearchResults] = useState<Article[]>([]);
   const { state } = useGlobalState();
-  // const mounted = useMounted();
 
   console.log(searchArray(mockData.results, state.query))
   
@@ -23,18 +22,6 @@ const Search = () => {
     const results = searchArray(mockData.results, state.query)
     setSearchResults(results)
   }, [state.query])
-
-  // const getArticles = useCallback(() => {
-  //   if (mounted.current) {
-  //     setSearchResults(mockData.results);
-  //   }
-  // }, [mounted]);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     getArticles();
-  //   }, 450);
-  // }, [getArticles]);
 
   return (
     <div className="Search">

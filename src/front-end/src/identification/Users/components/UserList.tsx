@@ -23,6 +23,8 @@ const UserList = (props: UserListProps) => {
     null
   );
 
+  /// ********* ///
+
   const delayFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (currentTimer) {
       clearTimeout(currentTimer);
@@ -37,6 +39,8 @@ const UserList = (props: UserListProps) => {
     setCurrentTimer(timer);
   };
 
+  /// ********* ///
+  
   return (
     <Paginator page={page} totalPages={totalPages} setPage={setPage}>
       <Table id="users-list">

@@ -25,6 +25,9 @@ function buildMap(data: Article[]): { [key: string]: Article[] } {
   return map;
 }
 /**
+ *  @param {Article[]} data
+ *  @param {string} searchTerm
+ *  @return {Object} results
  * returns all articles containing matching character from any field sorted by title relevance first.
  */
 export function searchArray(data: Article[], searchTerm: string | undefined): Article[] {
