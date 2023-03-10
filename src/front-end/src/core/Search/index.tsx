@@ -14,8 +14,6 @@ import "./index.css";
 const Search = () => {
   const [searchResults, setSearchResults] = useState<Article[]>([]);
   const { state } = useGlobalState();
-
-  console.log(useGlobalState())
   
   useEffect(() => {
     const results = searchArray(mockData.results, state.query)

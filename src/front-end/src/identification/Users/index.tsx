@@ -102,17 +102,17 @@ const Users = () => {
         request,
         handleErrors
       );
-
+      
       if (response !== undefined) {
-        setUsers(response.users);
+        setUsers(response.users);      // ****
         setTotalPages(response.pages);
         setUsersFetched(true);
-
+        
         if (rolesFetched) {
           setErrorMessage("");
         }
       }
-
+      console.log("fetchUsers response: ", response)
       setFetchingUsers(false);
     };
 
@@ -162,7 +162,8 @@ const Users = () => {
     // eslint-disable-next-line
   }, [accessTokenValid, setState]);
 
-  if (authorized && errorMessage === "" && usersFetched && rolesFetched) {
+  // remove !
+  if (!authorized && errorMessage === "" && usersFetched && rolesFetched) {
     return (
       <Center>
         <Box w="container.xlg" h="100%">

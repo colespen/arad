@@ -11,7 +11,7 @@ const SearchBar = () => {
 
   const onSearch = useCallback(
     (query: string) => setState((prev) => ({ ...prev, query })),
-    [term]
+    [setState]
   );
 
   useEffect(() => {

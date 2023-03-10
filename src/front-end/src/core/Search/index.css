@@ -23,5 +23,9 @@ p {
 }
 
 .search-input {
+  width: 100%;
+  max-width: 400px;
+  min-width: 200px;
+  padding-left: 10px;
   color: black;
 }
