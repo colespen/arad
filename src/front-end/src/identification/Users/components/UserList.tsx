@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Input, Table, Tbody, Td, Tr } from "@chakra-ui/react";
+import { debounce } from "debounce";
 
-import { 
-  Role, 
-  // User 
+import {
+  Role,
+  // User
 } from "../../../api/types/friendly";
 
 import { MockUser } from "../../../mock-data-util/mock-interface";
@@ -25,38 +26,24 @@ interface UserListProps {
 const UserList = (props: UserListProps) => {
   const { users, roles, filterText, setFilterText, page, setPage, totalPages } =
     props;
-  const [currentTimer, setCurrentTimer] = React.useState<NodeJS.Timeout | null>(
-    null
-  );
   const [filteredUsers, setFilteredUsers] = React.useState<MockUser[]>([]);
 
   /// ********* ///
 
   useEffect(() => {
-    const filtered = users.filter((user) => 
-      user.email.includes(filterText) 
-    )
-    setFilteredUsers(filtered)
-  }, [users, filterText])
+    const filtered = users.filter((user) => user.email.includes(filterText));
+    setFilteredUsers(filtered);
+  }, [users, filterText]);
 
-
-  const delayFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (currentTimer) {
-      clearTimeout(currentTimer);
-    }
-
-    const timer = setTimeout(() => {
+  const delayFilterChange = debounce(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
       setFilterText(event.target.value);
       setPage(1);
-      setCurrentTimer(null);
-    }, 666);
-
-    setCurrentTimer(timer);
-  };
+    },
+    666
+  );
 
   /// ********* ///
-
-
 
   return (
     <Paginator page={page} totalPages={totalPages} setPage={setPage}>
