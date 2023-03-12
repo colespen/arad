@@ -9,7 +9,7 @@ import {
   RolesResponse,
   TokenRequest,
   TokenResponse,
-  User,
+  // User,
   UsersRequest,
   UsersResponse,
 } from "../../api/types/friendly";
@@ -23,9 +23,12 @@ import {
 import { UserList } from "./components/UserList";
 import { Spinner } from "@chakra-ui/react";
 
+import mockUsers from "../../mock-data-util/mock-users.json";
+import { MockUser } from "../../mock-data-util/mock-interface";
+
 const Users = () => {
   const { state, setState } = useGlobalState();
-  const [users, setUsers] = React.useState<User[]>([]);
+  const [users, setUsers] = React.useState<MockUser[]>(mockUsers);
   const [roles, setRoles] = React.useState<Role[]>([]);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [page, setPage] = React.useState(1);
@@ -37,6 +40,9 @@ const Users = () => {
   const [rolesFetched, setRolesFetched] = React.useState(false);
   const [usersFetched, setUsersFetched] = React.useState(false);
   const navigate = useNavigate();
+
+  console.log("users: ", users);
+  console.log("roles: ", roles);
 
   const authorized =
     loggedIn(state.credentials!) && isAdministrator(state.user!.roles);
@@ -102,17 +108,17 @@ const Users = () => {
         request,
         handleErrors
       );
-      
+
       if (response !== undefined) {
-        setUsers(response.users);      // ****
+        setUsers(response.users); // ****
         setTotalPages(response.pages);
         setUsersFetched(true);
-        
+
         if (rolesFetched) {
           setErrorMessage("");
         }
       }
-      console.log("fetchUsers response: ", response)
+      // console.log("fetchUsers response: ", response)
       setFetchingUsers(false);
     };
 
@@ -151,7 +157,7 @@ const Users = () => {
           setErrorMessage("");
         }
       }
-
+      // console.log("fetchRoles response: ", response)
       setFetchingRoles(false);
     };
 
@@ -162,8 +168,8 @@ const Users = () => {
     // eslint-disable-next-line
   }, [accessTokenValid, setState]);
 
-  // remove !
-  if (!authorized && errorMessage === "" && usersFetched && rolesFetched) {
+  //  ! <-- remove ****                     ! <-- remove --> !
+  if (!authorized && errorMessage === "" && !usersFetched && !rolesFetched) {
     return (
       <Center>
         <Box w="container.xlg" h="100%">

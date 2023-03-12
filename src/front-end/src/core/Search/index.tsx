@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import { useGlobalState } from "../../GlobalState";
 
-import mockData from "../../mock-data-util/mock-data.json";
+import mockArticles from "../../mock-data-util/mock-articles.json";
 import { Article } from "../../mock-data-util/mock-interface";
 import { searchArray } from "../../helper/searchDatabase";
 
@@ -16,7 +16,7 @@ const Search = () => {
   const { state } = useGlobalState();
   
   useEffect(() => {
-    const results = searchArray(mockData.results, state.query)
+    const results = searchArray(mockArticles.results, state.query)
     setSearchResults(results)
   }, [state.query])
 

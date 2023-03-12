@@ -7,12 +7,14 @@ import {
   RoleActions,
   RoleRequest,
   Roles,
-  User,
+  // User,
 } from "../../../api/types/friendly";
 import { modifyAccessToken, useGlobalState } from "../../../GlobalState";
 
+import { MockUser } from "../../../mock-data-util/mock-interface";
+
 interface UserListRowProps {
-  user: User;
+  user: MockUser;
   roles: Role[];
 }
 

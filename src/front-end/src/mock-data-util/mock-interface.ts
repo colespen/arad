@@ -7,3 +7,9 @@ export interface Article {
   // an index signature does not insure type safety...
   [key: string]: string | number | undefined;
 }
+
+export interface MockUser {
+  id: string;
+  email: string;
+  roles: string[];
+}

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useGlobalState } from "../../GlobalState";
 import { useDebounce } from "../../hooks/useDebounce";
 
-
 const SearchBar = () => {
   const { setState } = useGlobalState();
   const [value, setValue] = useState("");
@@ -11,7 +10,8 @@ const SearchBar = () => {
 
   const onSearch = useCallback(
     (query: string) => setState((prev) => ({ ...prev, query })),
-    [setState]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   useEffect(() => {

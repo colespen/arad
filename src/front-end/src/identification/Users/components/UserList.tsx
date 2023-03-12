@@ -1,13 +1,18 @@
 import React from "react";
 import { Input, Table, Tbody, Td, Tr } from "@chakra-ui/react";
 
-import { Role, User } from "../../../api/types/friendly";
+import { 
+  Role, 
+  // User 
+} from "../../../api/types/friendly";
+
+import { MockUser } from "../../../mock-data-util/mock-interface";
 
 import { UserListRow } from "./UserListRow";
 import { Paginator } from "../../../components/Paginator";
 
 interface UserListProps {
-  users: User[];
+  users: MockUser[];
   roles: Role[];
   filterText: string;
   setFilterText: Function;
@@ -40,7 +45,7 @@ const UserList = (props: UserListProps) => {
   };
 
   /// ********* ///
-  
+
   return (
     <Paginator page={page} totalPages={totalPages} setPage={setPage}>
       <Table id="users-list">
