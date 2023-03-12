@@ -28,8 +28,6 @@ const UserList = (props: UserListProps) => {
     props;
   const [filteredUsers, setFilteredUsers] = React.useState<MockUser[]>([]);
 
-  /// ********* ///
-
   useEffect(() => {
     const filtered = users.filter((user) => user.email.includes(filterText));
     setFilteredUsers(filtered);
@@ -40,10 +38,9 @@ const UserList = (props: UserListProps) => {
       setFilterText(event.target.value);
       setPage(1);
     },
-    666
+    575
   );
 
-  /// ********* ///
 
   return (
     <Paginator page={page} totalPages={totalPages} setPage={setPage}>

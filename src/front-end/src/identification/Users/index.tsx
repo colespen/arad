@@ -42,9 +42,6 @@ const Users = () => {
   const [usersFetched, setUsersFetched] = React.useState(false);
   const navigate = useNavigate();
 
-  // console.log("users: ", users);
-  // console.log("roles: ", roles);
-
   const authorized =
     loggedIn(state.credentials!) && isAdministrator(state.user!.roles);
   const accessTokenValid =
@@ -119,7 +116,6 @@ const Users = () => {
           setErrorMessage("");
         }
       }
-      // console.log("fetchUsers response: ", response)
       setFetchingUsers(false);
     };
 
@@ -158,7 +154,6 @@ const Users = () => {
           setErrorMessage("");
         }
       }
-      // console.log("fetchRoles response: ", response)
       setFetchingRoles(false);
     };
 
@@ -170,7 +165,7 @@ const Users = () => {
   }, [accessTokenValid, setState]);
 
   //  ! <-- remove ****                     ! <-- remove --> !
-  if (!authorized && errorMessage === "" && !usersFetched && !rolesFetched) {
+  if (authorized && errorMessage === "" && usersFetched && rolesFetched) {
     return (
       <Center>
         <Box w="container.xlg" h="100%">
