@@ -28,6 +28,7 @@ import { MockUser } from "../../mock-data-util/mock-interface";
 
 const Users = () => {
   const { state, setState } = useGlobalState();
+  //                                    ** User
   const [users, setUsers] = React.useState<MockUser[]>(mockUsers);
   const [roles, setRoles] = React.useState<Role[]>([]);
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -41,8 +42,8 @@ const Users = () => {
   const [usersFetched, setUsersFetched] = React.useState(false);
   const navigate = useNavigate();
 
-  console.log("users: ", users);
-  console.log("roles: ", roles);
+  // console.log("users: ", users);
+  // console.log("roles: ", roles);
 
   const authorized =
     loggedIn(state.credentials!) && isAdministrator(state.user!.roles);

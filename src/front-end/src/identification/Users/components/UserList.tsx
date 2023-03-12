@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input, Table, Tbody, Td, Tr } from "@chakra-ui/react";
 
 import { 
@@ -12,6 +12,7 @@ import { UserListRow } from "./UserListRow";
 import { Paginator } from "../../../components/Paginator";
 
 interface UserListProps {
+  // ** User
   users: MockUser[];
   roles: Role[];
   filterText: string;
@@ -27,8 +28,17 @@ const UserList = (props: UserListProps) => {
   const [currentTimer, setCurrentTimer] = React.useState<NodeJS.Timeout | null>(
     null
   );
+  const [filteredUsers, setFilteredUsers] = React.useState<MockUser[]>([]);
 
   /// ********* ///
+
+  useEffect(() => {
+    const filtered = users.filter((user) => 
+      user.email.includes(filterText) 
+    )
+    setFilteredUsers(filtered)
+  }, [users, filterText])
+
 
   const delayFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (currentTimer) {
@@ -45,6 +55,8 @@ const UserList = (props: UserListProps) => {
   };
 
   /// ********* ///
+
+
 
   return (
     <Paginator page={page} totalPages={totalPages} setPage={setPage}>
@@ -66,7 +78,7 @@ const UserList = (props: UserListProps) => {
               return <Td key={role}>{role}</Td>;
             })}
           </Tr>
-          {users.map((user) => {
+          {filteredUsers.map((user) => {
             const rowKey = `users-row-${user.id}`;
             return <UserListRow key={rowKey} user={user} roles={roles} />;
           })}
